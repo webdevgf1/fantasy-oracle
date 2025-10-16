@@ -33,20 +33,19 @@
         overflow-x: hidden;
       }
 
-      /* Background Spline */
+      iframe.polymarket-banner { width:100%; height:60px; border:none; overflow:hidden; display:block; }
+
       spline-viewer { position: fixed; inset: 0; z-index: 0; opacity: 0.9; }
       .backdrop { position: fixed; inset: 0; background: radial-gradient(1000px 600px at 70% 20%, rgba(10,10,25,0.15), rgba(0,0,10,0.8)); z-index: 0; }
 
       .page { position: relative; z-index: 1; min-height: 100dvh; display: flex; flex-direction: column; }
 
-      /* Nav */
       .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px clamp(16px, 6vw, 72px); }
       .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; }
       .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); box-shadow: var(--shadow); }
       .links a { color: var(--muted); text-decoration: none; font-weight: 500; margin-left: 24px; }
       .cta { padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); color: var(--fg); backdrop-filter: blur(12px); }
 
-      /* Hero */
       .hero { display: grid; place-items: center; padding: clamp(40px, 10vh, 120px) clamp(16px, 6vw, 72px) 48px; text-align: center; }
       .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); font-size: 13px; color: var(--muted); }
       .title { font-size: clamp(36px, 7vw, 84px); line-height: 1.05; margin: 18px auto 16px; font-weight: 800; }
@@ -56,36 +55,23 @@
       .btn { padding: 12px 18px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.06); color: var(--fg); font-weight: 600; text-decoration: none; backdrop-filter: blur(10px); }
       .btn.primary { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); border-color: transparent; }
 
-      /* Sections */
       .section { padding: 24px clamp(16px, 6vw, 72px) 72px; }
       .section h2 { text-align:center; margin: 10px 0 24px; font-size: clamp(24px,3.8vw,34px); }
 
-      /* Cards grid */
       .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; padding: 0 clamp(16px, 6vw, 72px) 40px; }
       .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); backdrop-filter: blur(10px); }
       .card h3 { margin: 6px 0 10px; font-size: 18px; }
       .card p { margin: 0; color: var(--muted); line-height: 1.6; }
 
-      /* Slider */
-      .slider-wrap { position: relative; padding: 0 clamp(16px, 6vw, 72px); }
-      .slider { display: flex; overflow-x: auto; gap: 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
-      .slide { min-width: clamp(260px, 42vw, 420px); scroll-snap-align: start; }
-      .slider .card { height: 100%; }
-      .slider-nav { display:flex; gap:10px; justify-content:flex-end; padding: 8px clamp(16px, 6vw, 72px) 24px; }
-      .icon-btn { border:1px solid var(--border); background:rgba(255,255,255,.06); border-radius:10px; padding:10px 14px; color:var(--fg); cursor:pointer; }
-
-      /* Simple sparkline */
-      .spark { width:100%; height:40px; display:block; }
-
-      /* Footer */
       footer { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
       .footer-links { display:flex; gap:16px; justify-content:center; margin-top:8px; }
       .footer-links a{ color:var(--muted); text-decoration:none; }
-
-      @media (prefers-reduced-motion: reduce) { spline-viewer{ display:none; } }
     </style>
   </head>
   <body>
+    <!-- Polymarket banner -->
+    <iframe class="polymarket-banner" src="https://ticker.polymarket.com/embed?category=Sports&theme=dark&speed=1&showPrices=false" width="100%" height="60" frameborder="0" scrolling="no"></iframe>
+
     <spline-viewer url="https://prod.spline.design/5O3g7zv-Example-Replace-Me/scene.splinecode"></spline-viewer>
     <div class="backdrop"></div>
 
@@ -115,128 +101,20 @@
         </div>
       </section>
 
-      <!-- LIVE SIGNALS -->
       <section id="signals" class="section">
         <h2>Live Fantasy Signals</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>⬆ Cole Palmer</h3>
-            <p><strong>+12,400</strong> transfers in (3h). Start likelihood up. Implied goal market shows <strong>~8%</strong> undervaluation.</p>
-            <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,30 15,28 30,25 45,20 60,18 75,12 90,10 100,8"/></svg>
-          </article>
-          <article class="card">
-            <h3>⬇ Ollie Watkins</h3>
-            <p><strong>−9,100</strong> transfers out (6h). Injury chatter rising; price drift detected on scoring markets.</p>
-            <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,10 15,12 30,15 45,18 60,22 75,28 90,32 100,34"/></svg>
-          </article>
-          <article class="card">
-            <h3>⬆ Darwin Núñez</h3>
-            <p><strong>+6,700</strong> transfers in (overnight). Rotation signal from training footage; starting odds improving.</p>
-            <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,34 15,32 30,28 45,24 60,22 75,18 90,14 100,10"/></svg>
-          </article>
-        </div>
-      </section>
-
-      <!-- TRENDS DASHBOARD -->
-      <section id="trends" class="section">
-        <h2>Trends Dashboard</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Top Rising Players (24h)</h3>
-            <p style="margin-bottom:12px">Transfer velocity index</p>
-            <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,32 10,30 20,28 30,25 40,21 50,18 60,14 70,11 80,9 90,8 100,6"/></svg>
-          </article>
-          <article class="card">
-            <h3>Transfer Heatmap (Week)</h3>
-            <p style="margin-bottom:12px">Volume by hour</p>
-            <svg viewBox="0 0 120 60" class="spark" preserveAspectRatio="none">
-              <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="currentColor" stop-opacity=".8"/><stop offset="100%" stop-color="currentColor" stop-opacity=".1"/></linearGradient></defs>
-              <rect x="0" y="15" width="12" height="30" fill="url(#g)"/>
-              <rect x="14" y="10" width="12" height="35" fill="url(#g)"/>
-              <rect x="28" y="22" width="12" height="23" fill="url(#g)"/>
-              <rect x="42" y="18" width="12" height="27" fill="url(#g)"/>
-              <rect x="56" y="8" width="12" height="37" fill="url(#g)"/>
-              <rect x="70" y="20" width="12" height="25" fill="url(#g)"/>
-              <rect x="84" y="26" width="12" height="19" fill="url(#g)"/>
-              <rect x="98" y="12" width="12" height="33" fill="url(#g)"/>
-            </svg>
-          </article>
-          <article class="card">
-            <h3>Polymarket vs Transfers</h3>
-            <p style="margin-bottom:12px">Implied probability gap</p>
-            <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,22 10,20 20,19 30,18 40,16 50,17 60,15 70,14 80,12 90,13 100,11"/></svg>
-          </article>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section id="how" class="section">
-        <h2>How It Works</h2>
-        <div class="cards">
-          <article class="card"><h3>1) Track</h3><p>We ingest live fantasy transfer streams, training notes, and social chatter across trusted cohorts.</p></article>
-          <article class="card"><h3>2) Analyze</h3><p>ML models score signals for credibility and context, filtering noise and weighting by past accuracy.</p></article>
-          <article class="card"><h3>3) Alert</h3><p>Threshold-based alerts (e.g., 5× baseline in 30m) push to email/Discord so you act before the news.</p></article>
-        </div>
-      </section>
-
-      <!-- TESTIMONIALS SLIDER -->
-      <section id="testimonials" class="section">
-        <h2>What Players Are Saying</h2>
-        <div class="slider-wrap">
-          <div class="slider" id="t-slider">
-            <article class="card slide"><h3>“Called the benching early.”</h3><p>“FantasyOracle flagged a sell-off 4 hours pre-kickoff. Swapped early, won my week.” — <strong>@FPLMatrix</strong></p></article>
-            <article class="card slide"><h3>“Profited on Polymarket.”</h3><p>“Transfer spike + training note → long shot mispriced. Quick 18% move.” — <strong>@EdgeTrader</strong></p></article>
-            <article class="card slide"><h3>“Real-time edge.”</h3><p>“Alerts hit my Discord before the pressers. It feels like cheating (it isn’t).” — <strong>@FantasyNerd</strong></p></article>
-            <article class="card slide"><h3>“Simple & actionable.”</h3><p>“No noise, just ‘why this matters’ + suggested actions.” — <strong>@CaptaincyCoach</strong></p></article>
-          </div>
-        </div>
-        <div class="slider-nav">
-          <button class="icon-btn" data-dir="-1">◀</button>
-          <button class="icon-btn" data-dir="1">▶</button>
-        </div>
-      </section>
-
-      <!-- WAITLIST / SIGNUP -->
-      <section id="signup" class="section" style="text-align:center;">
-        <h2>Join The Waitlist</h2>
-        <p class="sub" style="margin:0 auto 16px; max-width:680px">Be first to access FantasyOracle and get weekly early-intel reports for FPL (NFL beta coming soon).</p>
-        <form action="#" method="POST" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-          <input type="email" name="email" placeholder="Your email" required style="padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--fg); min-width:260px;">
-          <button class="btn primary" type="submit">Notify Me</button>
-        </form>
-        <small style="display:block; margin-top:8px; color:var(--muted)">We’ll never share your email. Unsubscribe anytime.</small>
-      </section>
-
-      <!-- ROADMAP -->
-      <section id="roadmap" class="section">
-        <h2>Roadmap</h2>
-        <div class="cards">
-          <article class="card"><h3>✅ Premier League Signals</h3><p>Real-time transfer tracking, injury/start heuristics, Polymarket scanners.</p></article>
-          <article class="card"><h3>🧪 NFL Beta</h3><p>Depth chart monitoring, practice participation signals, late-breaking actives/inactives.</p></article>
-          <article class="card"><h3>📈 Backtesting & Accuracy</h3><p>Historical signal evaluation, precision/recall dashboards, cohort quality scoring.</p></article>
-          <article class="card"><h3>🤝 Integrations</h3><p>Discord bot, email digests, API access for power users and partners.</p></article>
+        <div class="cards" style="text-align:center;">
+          <p style="color:var(--muted);width:100%;">Coming soon — live dashboard will display the latest player transfer intelligence and market alerts.</p>
         </div>
       </section>
 
       <footer>
         © 2025 FantasyOracle. All rights reserved. FantasyOracle is not affiliated with the Premier League, Fantasy Premier League, or Polymarket. Data is for informational purposes only.
         <div class="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Contact</a>
-          <a href="#">Discord</a>
+          <a href="mailto:media@fantasyoracle.fun">Contact</a>
           <a href="#">X/Twitter</a>
         </div>
       </footer>
     </main>
-
-    <script>
-      // Testimonials slider controls
-      const slider = document.getElementById('t-slider');
-      const navButtons = document.querySelectorAll('.slider-nav .icon-btn');
-      navButtons.forEach(btn => btn.addEventListener('click', () => {
-        const dir = Number(btn.dataset.dir);
-        slider.scrollBy({ left: dir * (slider.clientWidth * 0.8), behavior: 'smooth' });
-      }));
-    </script>
   </body>
 </html>
