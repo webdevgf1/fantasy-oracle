@@ -5,243 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fantasy Oracle — Predict. Trade. Win.</title>
 
-    <!-- SEO -->
-    <meta name="description" content="FantasyOracle helps you get ahead in your fantasy league with AI-driven transfer intel and undervalued Polymarket insights. Detect injuries early, spot surprise starters, and act before the crowd." />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="FantasyOracle — Predict. Trade. Win." />
-    <meta property="og:description" content="AI-powered signals for fantasy sports & prediction markets. Get ahead with early transfer intel and market edges." />
-    <meta property="og:image" content="https://dummyimage.com/1200x630/0a0a12/f3f3f8&text=FantasyOracle" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="FantasyOracle — Predict. Trade. Win." />
-    <meta name="twitter:description" content="Get ahead in your fantasy league with early intel & Polymarket edges." />
-
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23131322'/%3E%3Cpath d='M18 42l14-20 14 20' stroke='%239a5cff' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.41/build/spline-viewer.js"></script>
-
     <style>
       :root {
         --bg: #0a0a12;
         --fg: #f3f3f8;
         --muted: #a1a1b5;
-        --card: rgba(255, 255, 255, 0.06);
-        --border: rgba(255, 255, 255, 0.12);
+        --border: rgba(255,255,255,0.12);
         --accent-1: #9a5cff;
         --accent-2: #22d3ee;
         --accent-3: #f472b6;
-        --radius: 18px;
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
       }
 
-      html, body { height: 100%; }
-      body {
-        margin: 0;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-        color: var(--fg);
-        background: var(--bg);
-        overflow-x: hidden;
-      }
+      body { margin:0; font-family:Inter,system-ui; color:var(--fg); background:var(--bg); }
 
-      iframe.polymarket-banner { width:100%; height:60px; border:none; overflow:hidden; display:block; }
-
-      spline-viewer { position: fixed; inset: 0; z-index: 0; opacity: 0.9; }
-      .backdrop { position: fixed; inset: 0; background: radial-gradient(1000px 600px at 70% 20%, rgba(10,10,25,0.15), rgba(0,0,10,0.8)); z-index: 0; }
-
-      .page { position: relative; z-index: 1; min-height: 100dvh; display: flex; flex-direction: column; }
-
-      .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px clamp(16px, 6vw, 72px); }
-      .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; }
-      .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); box-shadow: var(--shadow); }
-      .links a { color: var(--muted); text-decoration: none; font-weight: 500; margin-left: 24px; }
-      .cta { padding: 10px 16px; border-radius: 999px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); color: var(--fg); backdrop-filter: blur(12px); }
-
-      .hero { display: grid; place-items: center; padding: clamp(40px, 10vh, 120px) clamp(16px, 6vw, 72px) 48px; text-align: center; }
-      .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); font-size: 13px; color: var(--muted); }
-      .title { font-size: clamp(36px, 7vw, 84px); line-height: 1.05; margin: 18px auto 16px; font-weight: 800; }
-      .gradient { background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3)); -webkit-background-clip: text; color: transparent; }
-      .sub { max-width: 880px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 1.6vw, 20px); line-height: 1.65; }
-      .actions { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-      .btn { padding: 12px 18px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.06); color: var(--fg); font-weight: 600; text-decoration: none; backdrop-filter: blur(10px); }
-      .btn.primary { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); border-color: transparent; }
-
-      .section { padding: 24px clamp(16px, 6vw, 72px) 72px; }
-      .section h2 { text-align:center; margin: 10px 0 24px; font-size: clamp(24px,3.8vw,34px); }
-
-      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; padding: 0 clamp(16px, 6vw, 72px) 40px; }
-      .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); backdrop-filter: blur(10px); }
-      .card h3 { margin: 6px 0 10px; font-size: 18px; }
-      .card p { margin: 0; color: var(--muted); line-height: 1.6; }
-
-      .logo-row { display:flex; flex-wrap:wrap; gap:22px; justify-content:center; align-items:center; padding: 0 clamp(16px, 6vw, 72px) 24px; opacity:.9 }
-      .logo-row img{ height:26px; filter: invert(1) contrast(1.1) brightness(1.1) opacity(.75); }
-
-      .team { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; padding: 0 clamp(16px, 6vw, 72px) 24px; }
-      .member{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
-      .member h4{ margin:8px 0 4px; }
-      .member p{ margin:0; color:var(--muted) }
-
-      .pricing { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; padding: 0 clamp(16px, 6vw, 72px) 24px; }
-      .plan{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px; text-align:center; }
-      .plan h3{ margin:8px 0 10px; }
-      .plan .price{ font-size:28px; font-weight:800; margin:6px 0 10px }
-      .badge{ display:inline-block; font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.06); margin-left:8px }
-
-      .social-cta{ text-align:center; }
-      .social-cta .btn{ display:inline-block }
-
-      footer { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
-      .footer-links { display:flex; gap:16px; justify-content:center; margin-top:8px; }
-      .footer-links a{ color:var(--muted); text-decoration:none; }
-
-      @media (prefers-reduced-motion: reduce) { spline-viewer{ display:none; } }
-          /* Powered-by bar styles */
-      .powered-by{ padding:24px clamp(16px, 6vw, 72px) 0; }
-      .powered-inner{ position:relative; background:rgba(255,255,255,.06); border:1px solid var(--border); border-radius:16px; backdrop-filter:blur(10px); overflow:hidden; }
-      .powered-inner::before{ content:""; position:absolute; inset:-1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); transform:translateX(-100%); animation: sheen 6s linear infinite; }
-      @keyframes sheen{ 0%{ transform:translateX(-100%);} 20%{ transform:translateX(100%);} 100%{ transform:translateX(100%);} }
-      .powered-header{ display:flex; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid var(--border); opacity:.9 }
-      .powered-header .label{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
-      .powered-logos{ display:flex; gap:28px; align-items:center; justify-content:center; padding:16px; flex-wrap:wrap; }
-      .powered-logos img{ height:28px; max-width:160px; object-fit:contain; filter:grayscale(1) contrast(1.05) brightness(1.1); opacity:.8; transition:filter .25s ease, transform .25s ease, opacity .25s ease; }
-      .powered-logos img:hover{ filter:grayscale(0); transform:translateY(-2px); opacity:1; }
+      .powered-by { text-align:center; padding:40px 20px; }
+      .powered-by .label { font-size:14px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; display:block; }
+      .powered-logos { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:28px; }
+      .powered-logos img { height:28px; max-width:160px; filter:grayscale(1) contrast(1.05) brightness(1.1); opacity:.8; transition:filter .25s ease, transform .25s ease, opacity .25s ease; }
+      .powered-logos img:hover { filter:grayscale(0); transform:translateY(-2px); opacity:1; }
     </style>
   </head>
   <body>
-    <!-- Polymarket banner -->
-    <iframe class="polymarket-banner" src="https://ticker.polymarket.com/embed?category=Sports&theme=dark&speed=1&showPrices=false" width="100%" height="60" frameborder="0" scrolling="no"></iframe>
-
-    <spline-viewer url="https://prod.spline.design/5O3g7zv-Example-Replace-Me/scene.splinecode"></spline-viewer>
-    <div class="backdrop"></div>
-
-    <main class="page">
-      <header class="nav">
-        <div class="brand">
-          <div class="logo"></div>
-          <span>FantasyOracle</span>
-        </div>
-        <nav class="links">
-          <a href="#signals">Signals</a>
-          <a href="#why">Why</a>
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#signup" class="cta">Get Access</a>
-        </nav>
-      </header>
-
-      <section class="hero">
-        <div class="hero-inner">
-          <span class="eyebrow">AI-powered insight • Fantasy sports & prediction markets</span>
-          <h1 class="title">Get Ahead In Your <span class="gradient">Fantasy League</span></h1>
-          <p class="sub">FantasyOracle tracks fantasy transfers, market sentiment, and hidden signals across leagues. Detect injuries before they’re announced, spot surprise starters, and uncover undervalued lines on Polymarket — all powered by cutting-edge analytics built to shake up the world of fantasy sports.</p>
-          <div class="actions">
-            <a class="btn primary" href="#signup">Join The Waitlist →</a>
-            <a class="btn" href="#signals">See Live Signals →</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- LIVE SIGNALS (placeholder) -->
-      <section id="signals" class="section">
-        <h2>Live Fantasy Signals</h2>
-        <div class="cards" style="text-align:center;">
-          <p style="color:var(--muted);width:100%;">Coming soon — live dashboard will display the latest player transfer intelligence and market alerts.</p>
-        </div>
-      </section>
-
-      <!-- WHY FANTASYORACLE -->
-      <section id="why" class="section">
-        <h2>Why FantasyOracle?</h2>
-        <div class="cards">
-          <article class="card"><h3>The Problem</h3><p>Fantasy managers and bettors react to news too late — injuries, rotations, and insider whispers move markets before headlines drop.</p></article>
-          <article class="card"><h3>The Solution</h3><p>We detect live transfer spikes, parse social signals, and correlate markets to surface **early, credible** insights.</p></article>
-          <article class="card"><h3>The Result</h3><p>Get ahead of every lineup leak, avoid red flags early, and spot undervalued Polymarket lines before they correct.</p></article>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section id="how" class="section">
-        <h2>How It Works</h2>
-        <div class="cards">
-          <article class="card"><h3>1) Track</h3><p>We ingest live fantasy transfer streams, training notes, and social chatter across trusted cohorts.</p></article>
-          <article class="card"><h3>2) Analyze</h3><p>ML models score signals for credibility and context, filtering noise and weighting by past accuracy.</p></article>
-          <article class="card"><h3>3) Alert</h3><p>Threshold-based alerts (e.g., 5× baseline in 30m) push to email/Discord so you act before the news.</p></article>
-        </div>
-      </section>
-
-      <!-- BEHIND THE DATA / TECH STACK -->
-      <section id="stack" class="powered-by">
-        <div class="powered-inner">
-          <div class="powered-header">
-            <span class="label">Powered by</span>
-          </div>
-          <div class="powered-logos">
-            <img alt="FPL API" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ac763a410ca3b43bf_images%20(1).png" />
-            <img alt="Polymarket" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a667b803dda1f8984_Company_Logo_Polymarket.png" />
-            <img alt="Python" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ab00c7602d368c73d_python_logo_icon_168886.png" />
-            <img alt="FastAPI" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a1a70a9fb5ce297e3_logo-teal.png" />
-            <img alt="PostgreSQL" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ae689e40829badfd8_Postgresql_elephant.svg.png" />
-            <img alt="AWS" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a73471d968c7f1f44_Amazon_Web_Services-Logo.wine.svg" />
-          </div>
-        </div>
-      </section>
-
-      <!-- MEET THE TEAM -->
-      <section id="team" class="section">
-        <h2>Meet The Team</h2>
-        <div class="team">
-          <div class="member"><h4>Your Name</h4><p>Founder • Data & Product</p><p>Fantasy veteran building tools at the intersection of sport and probability.</p></div>
-          <div class="member"><h4>Hiring Soon</h4><p>Data Engineer • ML</p><p>Help us scale ingestion, features, and backtesting.</p></div>
-          <div class="member"><h4>Advisors</h4><p>Pro bettors • Analysts</p><p>Guiding our signal quality and model evaluation.</p></div>
-        </div>
-      </section>
-
-      <!-- PRICING (COMING SOON) -->
-      <section id="pricing" class="section">
-        <h2>Pricing</h2>
-        <div class="pricing">
-          <div class="plan">
-            <h3>Starter <span class="badge">Coming soon</span></h3>
-            <div class="price">Free</div>
-            <p>Weekly intel digest, limited signals, email alerts.</p>
-          </div>
-          <div class="plan">
-            <h3>Pro <span class="badge">Coming soon</span></h3>
-            <div class="price">£19/mo</div>
-            <p>Real-time alerts, Polymarket correlation, watchlists.</p>
-          </div>
-          <div class="plan">
-            <h3>Elite <span class="badge">Coming soon</span></h3>
-            <div class="price">£49/mo</div>
-            <p>Full feed, Discord bot, historical dashboards & API.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- JOIN THE MOVEMENT / SOCIAL CTA -->
-      <section id="signup" class="section social-cta">
-        <h2>Join The Waitlist</h2>
-        <p class="sub" style="margin:0 auto 16px; max-width:680px">Be first to access FantasyOracle and get weekly early-intel reports. FPL now, NFL beta next.</p>
-        <form action="#" method="POST" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-          <input type="email" name="email" placeholder="Your email" required style="padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--fg); min-width:260px;">
-          <button class="btn primary" type="submit">Notify Me</button>
-        </form>
-        <div style="margin-top:16px">
-          <a class="btn" href="mailto:media@fantasyoracle.fun">Contact</a>
-          <a class="btn" href="#">X/Twitter</a>
-        </div>
-      </section>
-
-      <footer>
-        © 2025 FantasyOracle. All rights reserved. FantasyOracle is not affiliated with the Premier League, Fantasy Premier League, or Polymarket. Data is for informational purposes only.
-        <div class="footer-links">
-          <a href="mailto:media@fantasyoracle.fun">Contact</a>
-          <a href="#">X/Twitter</a>
-        </div>
-      </footer>
-    </main>
+    <section id="stack" class="powered-by">
+      <span class="label">Powered by</span>
+      <div class="powered-logos">
+        <img alt="FPL API" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ac763a410ca3b43bf_images%20(1).png" />
+        <img alt="Polymarket" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a667b803dda1f8984_Company_Logo_Polymarket.png" />
+        <img alt="Python" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ab00c7602d368c73d_python_logo_icon_168886.png" />
+        <img alt="FastAPI" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a1a70a9fb5ce297e3_logo-teal.png" />
+        <img alt="PostgreSQL" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ae689e40829badfd8_Postgresql_elephant.svg.png" />
+        <img alt="AWS" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a73471d968c7f1f44_Amazon_Web_Services-Logo.wine.svg" />
+      </div>
+    </section>
   </body>
 </html>
