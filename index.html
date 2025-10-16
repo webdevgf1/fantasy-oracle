@@ -98,6 +98,16 @@
       .footer-links a{ color:var(--muted); text-decoration:none; }
 
       @media (prefers-reduced-motion: reduce) { spline-viewer{ display:none; } }
+          /* Powered-by bar styles */
+      .powered-by{ padding:24px clamp(16px, 6vw, 72px) 0; }
+      .powered-inner{ position:relative; background:rgba(255,255,255,.06); border:1px solid var(--border); border-radius:16px; backdrop-filter:blur(10px); overflow:hidden; }
+      .powered-inner::before{ content:""; position:absolute; inset:-1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); transform:translateX(-100%); animation: sheen 6s linear infinite; }
+      @keyframes sheen{ 0%{ transform:translateX(-100%);} 20%{ transform:translateX(100%);} 100%{ transform:translateX(100%);} }
+      .powered-header{ display:flex; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid var(--border); opacity:.9 }
+      .powered-header .label{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+      .powered-logos{ display:flex; gap:28px; align-items:center; justify-content:center; padding:16px; flex-wrap:wrap; }
+      .powered-logos img{ height:28px; max-width:160px; object-fit:contain; filter:grayscale(1) contrast(1.05) brightness(1.1); opacity:.8; transition:filter .25s ease, transform .25s ease, opacity .25s ease; }
+      .powered-logos img:hover{ filter:grayscale(0); transform:translateY(-2px); opacity:1; }
     </style>
   </head>
   <body>
@@ -163,17 +173,20 @@
       </section>
 
       <!-- BEHIND THE DATA / TECH STACK -->
-      <section id="stack" class="section">
-        <h2>Behind The Data</h2>
-        <div class="logo-row">
-          <img alt="FPL API" src="https://dummyimage.com/120x32/000/fff&text=FPL+API" />
-          <img alt="Polymarket" src="https://dummyimage.com/140x32/000/fff&text=POLYMARKET" />
-          <img alt="Python" src="https://dummyimage.com/100x32/000/fff&text=PYTHON" />
-          <img alt="FastAPI" src="https://dummyimage.com/100x32/000/fff&text=FASTAPI" />
-          <img alt="Postgres" src="https://dummyimage.com/110x32/000/fff&text=POSTGRES" />
-          <img alt="AWS" src="https://dummyimage.com/80x32/000/fff&text=AWS" />
+      <section id="stack" class="powered-by">
+        <div class="powered-inner">
+          <div class="powered-header">
+            <span class="label">Powered by</span>
+          </div>
+          <div class="powered-logos">
+            <img alt="FPL API" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ac763a410ca3b43bf_images%20(1).png" />
+            <img alt="Polymarket" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a667b803dda1f8984_Company_Logo_Polymarket.png" />
+            <img alt="Python" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ab00c7602d368c73d_python_logo_icon_168886.png" />
+            <img alt="FastAPI" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a1a70a9fb5ce297e3_logo-teal.png" />
+            <img alt="PostgreSQL" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ae689e40829badfd8_Postgresql_elephant.svg.png" />
+            <img alt="AWS" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a73471d968c7f1f44_Amazon_Web_Services-Logo.wine.svg" />
+          </div>
         </div>
-        <p class="sub" style="text-align:center; max-width:900px; margin:0 auto;">Powered by trusted data feeds, resilient pipelines, and model monitoring to keep signals fresh and reliable.</p>
       </section>
 
       <!-- MEET THE TEAM -->
