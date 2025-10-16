@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FantasyOracle — Predict. Trade. Win.</title>
 
-    <!-- SEO -->
-    <meta name="description" content="FantasyOracle helps you get ahead in your fantasy league with AI-driven transfer intel and undervalued Polymarket insights. Detect injuries early, spot surprise starters, and act before the crowd." />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="FantasyOracle — Predict. Trade. Win." />
-    <meta property="og:description" content="AI-powered signals for fantasy sports & prediction markets. Get ahead with early transfer intel and market edges." />
+    <!-- SEO (minimal) -->
+    <meta name="description" content="Get ahead in your fantasy league with AI-driven transfer intel and Polymarket edges. FantasyOracle surfaces early, credible signals before headlines." />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,340 +14,297 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-      :root {
-        --bg: #0a0a12;
-        --fg: #f3f3f8;
-        --muted: #a1a1b5;
-        --card: rgba(255,255,255,0.06);
-        --border: rgba(255,255,255,0.12);
-        --accent-1: #9a5cff;
-        --accent-2: #22d3ee;
-        --accent-3: #f472b6;
-        --radius: 18px;
-        --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      :root{
+        --bg:#0a0a12; --fg:#f3f3f8; --muted:#a1a1b5; --border:rgba(255,255,255,.12);
+        --card:rgba(255,255,255,.06); --shadow:0 20px 60px rgba(0,0,0,.45);
+        --a1:#9a5cff; --a2:#22d3ee; --a3:#f472b6; --a4:#67e8f9;
+        --radius:18px;
       }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--fg); background:var(--bg); overflow-x:hidden}
 
-      body { margin:0; font-family:Inter,system-ui; color:var(--fg); background:var(--bg); overflow-x:hidden; }
+      /* Utilities */
+      .container{padding: clamp(20px,6vw,72px)}
+      .section{padding: 56px 0}
+      .title{font-size:clamp(40px,7vw,84px); font-weight:800; line-height:1.05}
+      .sub{color:var(--muted); line-height:1.7}
+      .center{text-align:center}
 
-      iframe.polymarket-banner { width:100%; height:60px; border:none; overflow:hidden; display:block; }
+      /* Glass & gradient frames */
+      .glass{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:blur(10px); box-shadow:var(--shadow)}
+      .frame{position:relative; border-radius:calc(var(--radius) + 2px); padding:1px; background:linear-gradient(135deg, rgba(154,92,255,.5), rgba(34,211,238,.4));}
+      .frame>.glass{border:none}
 
-      header.nav { display:flex; align-items:center; justify-content:space-between; padding:22px clamp(16px,6vw,72px); }
-      .brand{ display:flex; align-items:center; gap:12px; font-weight:700; font-size:1.2rem; }
-      .logo{ width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); box-shadow:var(--shadow); }
-      .links a{ color:var(--muted); text-decoration:none; font-weight:500; margin-left:24px; }
-      .cta{ padding:10px 16px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--fg); }
+      /* Header */
+      header.nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+      .brand{display:flex; align-items:center; gap:12px; font-weight:800}
+      .logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--a1),var(--a2)); box-shadow:var(--shadow)}
+      .links a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:22px}
+      .cta{padding:10px 16px; border-radius:999px; background:linear-gradient(135deg,var(--a1),var(--a2)); color:#fff; text-decoration:none}
 
-      .hero{ text-align:center; padding:clamp(60px,12vh,140px) clamp(16px,6vw,72px); }
-      .title{ font-size:clamp(40px,7vw,84px); font-weight:800; line-height:1.05; }
-      .gradient{ background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3)); -webkit-background-clip:text; color:transparent; }
-      .sub{ color:var(--muted); font-size:clamp(16px,1.6vw,20px); max-width:800px; margin:18px auto 0; line-height:1.6; }
+      /* Polymarket banner */
+      iframe.polymarket-banner{width:100%; height:60px; border:none; display:block}
 
-      .section{ padding:60px clamp(16px,6vw,72px); }
-      .section h2{ text-align:center; margin-bottom:24px; font-size:clamp(26px,4vw,34px); }
+      /* Hero */
+      .hero{padding: clamp(60px,12vh,140px) 0 32px; text-align:center}
+      .gradient{background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3)); -webkit-background-clip:text; color:transparent}
+      .hero .sub{max-width:900px; margin:14px auto 0}
 
-      /* HOW IT WORKS */
-      .how-split{ display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center; }
-      .how-split .copy{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
-      .how-split .copy p{ margin:0 0 12px; color:var(--muted); line-height:1.7; font-size:clamp(16px,1.6vw,18px); }
-      .how-split .media{ aspect-ratio:16/10; border-radius:16px; border:1px dashed var(--border); display:grid; place-items:center; color:var(--muted); background:rgba(255,255,255,.03); }
-      @media(max-width:900px){ .how-split{ grid-template-columns:1fr; } }
+      /* Live placeholders */
+      .placeholder{text-align:center; color:var(--muted)}
+
+      /* WHY (already enhanced elsewhere) */
+      .why-wrap .lead{max-width:960px; margin:0 auto 26px}
+      .why-grid{display:grid; grid-template-columns:1.25fr 1fr; gap:24px}
+      .why-left{display:grid; gap:16px}
+      .why-card{padding:18px}
+      .why-points{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:8px}
+      .why-point{background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:12px; padding:12px}
+      .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:8px}
+      .kpi{background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:14px; padding:16px; text-align:center}
+      .kpi .num{font-weight:800}
+      .why-aside{position:sticky; top:16px; display:grid; gap:12px}
+      @media(max-width:980px){.why-grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.why-aside{position:relative; top:auto}}
+
+      /* HOW it works split */
+      .how-split{display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center}
+      .how-split .copy{padding:22px}
+      .how-split .media{aspect-ratio:16/10; border:1px dashed var(--border); border-radius:16px; display:grid; place-items:center; color:var(--muted); background:rgba(255,255,255,.03)}
+      @media(max-width:900px){.how-split{grid-template-columns:1fr}}
 
       /* Powered by */
-      .powered-by { text-align:center; padding:40px 20px; }
-      .powered-by .label { font-size:14px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; display:block; }
-      .powered-logos { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:28px; }
-      .powered-logos img { height:28px; max-width:160px; filter:grayscale(1) contrast(1.05) brightness(1.1); opacity:.8; transition:filter .25s ease, transform .25s ease, opacity .25s ease; }
-      .powered-logos img:hover { filter:grayscale(0); transform:translateY(-2px); opacity:1; }
+      .powered-by{ text-align:center}
+      .powered-by .label{font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:block}
+      .powered-logos{display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:28px}
+      .powered-logos img{height:28px; max-width:160px; object-fit:contain; filter:grayscale(1) contrast(1.05) brightness(1.1); opacity:.85; transition:all .25s}
+      .powered-logos img:hover{filter:grayscale(0); transform:translateY(-2px); opacity:1}
 
-      footer{ text-align:center; padding:60px 20px; color:var(--muted); font-size:14px; }
-      .footer-links{ display:flex; justify-content:center; gap:16px; margin-top:8px; }
-      .footer-links a{ color:var(--muted); text-decoration:none; }
-          /* WHY section enhanced */
-      .why-wrap{ padding:60px clamp(16px,6vw,72px); }
-      .why-lead{ text-align:center; max-width:920px; margin:0 auto 26px; color:var(--muted); line-height:1.7; }
-      .why-grid{ display:grid; grid-template-columns:1.25fr 1fr; gap:24px; align-items:start; }
-      .why-left{ display:grid; gap:16px; }
-      .why-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px 18px; box-shadow:var(--shadow); }
-      .why-card h3{ margin:4px 0 8px; font-size:18px; }
-      .why-card p{ margin:0; color:var(--muted); }
-      .why-points{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:6px; }
-      .why-point{ background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
-      .why-point b{ display:block; margin-bottom:4px; }
-      .kpis{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-      .kpi{ background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:14px; padding:16px; text-align:center; }
-      .kpi .num{ font-size:28px; font-weight:800; }
-      .kpi .lbl{ color:var(--muted); font-size:13px; }
-      .why-aside{ position:sticky; top:16px; display:grid; gap:12px; }
-      .why-callout{ background:linear-gradient(135deg, rgba(154,92,255,.15), rgba(34,211,238,.12)); border:1px solid var(--border); border-radius:16px; padding:16px; }
-      .why-callout h4{ margin:0 0 6px; }
-      .why-compare{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; }
-      .why-compare ul{ display:grid; grid-template-columns:1fr; gap:8px; margin:0; padding-left:18px; color:var(--muted); }
-      @media(max-width:980px){ .why-grid{ grid-template-columns:1fr; } .why-aside{ position:relative; top:auto; } }
-          /* Diagram (Data Pipeline) */
-      .diagram{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:var(--shadow); }
-      .diagram svg{ width:100%; height:auto; display:block; }
-      .diagram .label{ font-size:13px; fill:currentColor; opacity:.85 }
+      /* --- REVAMPED: Intelligence Engine (Pipeline) --- */
+      .engine{position:relative}
+      .engine-row{display:grid; grid-template-columns: repeat(4,minmax(180px,1fr)); gap:18px; align-items:stretch}
+      .engine-card{position:relative}
+      .engine-card .glass{height:100%; padding:16px}
+      .engine-card h4{margin:0 0 6px; font-size:16px}
+      .engine-card p{margin:0; color:var(--muted); font-size:14px; line-height:1.6}
+      .engine-arrow{display:none}
+      @media(min-width:980px){
+        .engine-arrow{display:block; position:absolute; inset:0; pointer-events:none}
+      }
+      .sheen{position:absolute; inset:-1px; border-radius:inherit; background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent); transform:translateX(-100%); animation:sheen 6s linear infinite}
+      @keyframes sheen{0%{transform:translateX(-100%)}20%{transform:translateX(100%)}100%{transform:translateX(100%)}}
 
-      /* Case Study */
-      .case{ display:grid; grid-template-columns:1fr; gap:16px; }
-      .case .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow); }
-      .case h3{ margin:0 0 8px; }
-      .facts{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:8px; }
-      .fact{ background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
-      .fact b{ display:block; margin-bottom:4px; }
+      /* Example Signal (Case Study) */
+      .example{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:stretch}
+      .example .story{padding:22px}
+      .stats{display:grid; gap:12px}
+      .stat{padding:16px}
+      .stat .big{font-size:28px; font-weight:800}
+      .stat small{color:var(--muted)}
+      @media(max-width:980px){.example{grid-template-columns:1fr}}
 
-      /* Roadmap timeline */
-      .timeline{ position:relative; margin:0 auto; max-width:980px; padding:12px 0; }
-      .timeline::before{ content:""; position:absolute; left:20px; top:0; bottom:0; width:2px; background:var(--border); }
-      .milestone{ position:relative; margin-left:56px; padding:12px 16px; background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); }
-      .milestone::before{ content:""; position:absolute; left:-38px; top:16px; width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); box-shadow:0 0 0 3px rgba(255,255,255,.06); }
-      .milestone h4{ margin:0 0 6px; }
-      .milestone small{ color:var(--muted); }
+      /* Vision Timeline (horizontal) */
+      .vision{position:relative}
+      .timeline{display:grid; grid-template-columns:repeat(4, minmax(180px,1fr)); gap:16px; align-items:stretch}
+      .milestone{position:relative; padding:18px}
+      .milestone::before{content:""; position:absolute; top:-8px; left:18px; width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--a1),var(--a2)); box-shadow:0 0 0 6px rgba(154,92,255,.18)}
+      .milestone h4{margin:0 0 6px}
+      .milestone p{margin:0; color:var(--muted)}
+      @media(max-width:980px){.timeline{grid-template-columns:1fr}}
+
+      /* Footer */
+      footer{ text-align:center; padding:56px 20px; color:var(--muted); font-size:14px }
+      .footer-links{ display:flex; gap:16px; justify-content:center; margin-top:8px }
+      .footer-links a{ color:var(--muted); text-decoration:none }
     </style>
   </head>
   <body>
-    <iframe class="polymarket-banner" src="https://ticker.polymarket.com/embed?category=Sports&theme=dark&speed=1&showPrices=false" width="100%" height="60" frameborder="0" scrolling="no"></iframe>
+    <!-- Polymarket live banner -->
+    <iframe class="polymarket-banner" src="https://ticker.polymarket.com/embed?category=Sports&theme=dark&speed=1&showPrices=false" title="Polymarket Sports Ticker"></iframe>
 
-    <header class="nav">
-      <div class="brand">
-        <div class="logo"></div>
-        <span>FantasyOracle</span>
-      </div>
-      <nav class="links">
-        <a href="#signals">Signals</a>
-        <a href="#why">Why</a>
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#signup" class="cta">Get Access</a>
-      </nav>
-    </header>
+    <div class="container">
+      <header class="nav">
+        <div class="brand">
+          <div class="logo"></div>
+          <span>FantasyOracle</span>
+        </div>
+        <nav class="links">
+          <a href="#signals">Signals</a>
+          <a href="#why">Why</a>
+          <a href="#engine">Intelligence</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#signup" class="cta">Get Access</a>
+        </nav>
+      </header>
 
-    <section class="hero">
-      <h1 class="title">Get Ahead In Your <span class="gradient">Fantasy League</span></h1>
-      <p class="sub">FantasyOracle tracks fantasy transfers, market sentiment, and hidden signals across leagues. Detect injuries before they’re announced, spot surprise starters, and uncover undervalued lines on Polymarket — all powered by cutting-edge analytics built to shake up the world of fantasy sports.</p>
-    </section>
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="title">Get Ahead In Your <span class="gradient">Fantasy League</span></h1>
+        <p class="sub">FantasyOracle tracks fantasy transfers, market sentiment, and hidden signals across leagues. Detect injuries before they’re announced, spot surprise starters, and uncover undervalued lines on Polymarket — all powered by cutting-edge analytics built to shake up the world of fantasy sports.</p>
+      </section>
 
-    <section id="signals" class="section">
-      <h2>Live Fantasy Signals</h2>
-      <p style="text-align:center; color:var(--muted);">Coming soon — live dashboard will display the latest player transfer intelligence and market alerts.</p>
-    </section>
+      <!-- Live signals placeholder -->
+      <section id="signals" class="section">
+        <h2 class="center">Live Fantasy Signals</h2>
+        <p class="placeholder">Coming soon — live dashboard will display the latest player transfer intelligence and market alerts.</p>
+      </section>
 
-    <section id="why" class="why-wrap">
-      <h2 style="text-align:center; margin-bottom:12px; font-size:clamp(26px,4vw,34px)">Why FantasyOracle?</h2>
-      <p class="why-lead">News moves slow. Data doesn’t. Injuries, rotations, and insider whispers shift fantasy decisions and market prices hours before headlines. FantasyOracle listens to the signal — not the noise — so you can act <em>before</em> the crowd.</p>
-      <div class="why-grid">
-        <div class="why-left">
-          <div class="why-card">
-            <h3>The Problem</h3>
-            <p>By the time official news drops, the best moves are gone. Sharps and insiders have already adjusted lineups and prices.</p>
-            <div class="why-points">
-              <div class="why-point"><b>Slow headlines</b>Pressers & team sheets lag real decisions.</div>
-              <div class="why-point"><b>Noisy socials</b>Rumors drown out credible signals.</div>
-              <div class="why-point"><b>Price drift</b>Markets reprice before fans react.</div>
+      <!-- Why section (polished) -->
+      <section id="why" class="section why-wrap">
+        <h2 class="center">Why FantasyOracle?</h2>
+        <p class="sub lead center">News moves slow. Data doesn’t. Injuries, rotations, and insider whispers shift fantasy decisions and market prices hours before headlines. FantasyOracle listens to the signal — not the noise — so you can act <em>before</em> the crowd.</p>
+        <div class="why-grid">
+          <div class="why-left">
+            <div class="glass why-card">
+              <h3>The Problem</h3>
+              <p>By the time official news drops, the best moves are gone. Sharps and insiders have already adjusted lineups and prices.</p>
+              <div class="why-points">
+                <div class="why-point">📣 <b>Slow headlines</b> Pressers & team sheets lag real decisions.</div>
+                <div class="why-point">🌪️ <b>Noisy socials</b> Rumors drown out credible signals.</div>
+                <div class="why-point">📉 <b>Price drift</b> Markets reprice before fans react.</div>
+              </div>
+            </div>
+            <div class="glass why-card">
+              <h3>The Solution</h3>
+              <p>Real-time transfer tracking from Premier League players & staff cohorts, plus model-weighted signals correlated with Polymarket.</p>
+              <div class="why-points">
+                <div class="why-point">👥 <b>550 players scraped</b> Live watch on their FPL squads.</div>
+                <div class="why-point">🔎 <b>~290 insider teams</b> Identified & monitored for moves.</div>
+                <div class="why-point">🪙 <b>Market scanner</b> Flags under/overvalued Polymarket lines.</div>
+              </div>
+            </div>
+            <div class="glass why-card">
+              <h3>The Result</h3>
+              <p>Actionable alerts that help you beat lineup news and exploit mispriced markets.</p>
+              <div class="kpis">
+                <div class="kpi"> <div class="num">Real‑time</div> <div class="sub">Transfers & subs</div> </div>
+                <div class="kpi"> <div class="num">Correlated</div> <div class="sub">Signals ↔ Markets</div> </div>
+                <div class="kpi"> <div class="num">Explainable</div> <div class="sub">Source & window</div> </div>
+                <div class="kpi"> <div class="num">Cross‑sport</div> <div class="sub">FPL → NFL</div> </div>
+              </div>
             </div>
           </div>
-          <div class="why-card">
-            <h3>The Solution</h3>
-            <p>Real-time transfer tracking from Premier League players & staff cohorts, plus model-weighted signals correlated with Polymarket.</p>
-            <div class="why-points">
-              <div class="why-point"><b>550 players scraped</b>Live watch on their FPL squads.</div>
-              <div class="why-point"><b>~290 insider teams</b>Identified & monitored for moves.</div>
-              <div class="why-point"><b>Market scanner</b>Flags under/overvalued Polymarket lines.</div>
+          <aside class="why-aside">
+            <div class="glass" style="padding:18px">
+              <h4 style="margin:0 0 6px">Real example</h4>
+              <p class="sub" style="margin:0">If <b>Cole Palmer</b> is transferred out by <b>7 insiders at Chelsea</b>, he’s likely <em>injured or benched</em>. FantasyOracle pings you and highlights that <b>Chelsea odds may drift</b> — so you can adjust your squad and evaluate Polymarket positions early.</p>
             </div>
-          </div>
-          <div class="why-card">
-            <h3>The Result</h3>
-            <p>Actionable alerts that help you beat lineup news and exploit mispriced markets.</p>
-            <div class="kpis">
-              <div class="kpi"><div class="num">Real‑time</div><div class="lbl">Transfers & subs</div></div>
-              <div class="kpi"><div class="num">Correlated</div><div class="lbl">Signals ↔ Markets</div></div>
-              <div class="kpi"><div class="num">Explainable</div><div class="lbl">Source cohort + why</div></div>
-              <div class="kpi"><div class="num">Cross‑sport</div><div class="lbl">FPL → NFL next</div></div>
+            <div class="glass" style="padding:18px">
+              <h4 style="margin:0 0 6px">Without vs With FantasyOracle</h4>
+              <ul style="margin:0; padding-left:18px" class="sub">
+                <li><b>Without:</b> React to headlines; miss best windows.</li>
+                <li><b>With:</b> Act on credible spikes from player/staff cohorts; front‑run repricing.</li>
+                <li><b>With:</b> See <em>why</em> (source, timestamps, historical accuracy).</li>
+              </ul>
             </div>
-          </div>
+          </aside>
         </div>
-        <aside class="why-aside">
-          <div class="why-callout">
-            <h4>Real example</h4>
-            <p>If <strong>Cole Palmer</strong> is transferred out by <strong>7 insiders at Chelsea</strong>, he’s likely <em>injured or benched</em>. FantasyOracle pings you and highlights that <strong>Chelsea odds may drift</strong> — so you can adjust your squad and evaluate Polymarket positions early.</p>
+      </section>
+
+      <!-- Undervalued Markets placeholder -->
+      <section id="markets" class="section">
+        <h2 class="center">Undervalued Markets</h2>
+        <p class="placeholder">Coming soon — live dashboard will display Polymarket lines flagged as potentially undervalued/overvalued based on transfer intelligence.</p>
+      </section>
+
+      <!-- HOW it works (your scrape + logic) -->
+      <section id="how" class="section">
+        <h2 class="center">How It Works</h2>
+        <div class="how-split">
+          <div class="glass copy">
+            <p>We’ve scraped the Fantasy Premier League squads for <b>all 550 Premier League players</b> and identified <b>~290 fantasy teams owned by players</b>. We also track fantasy teams from club staff across each corresponding club. We monitor their <b>transfers</b> and <b>live‑update subs</b> or moves in real time. Our algorithm then <b>cross‑references those insider‑like signals</b> with <b>Polymarket</b> to surface <i>undervalued or overvalued</i> markets tied to the transfer activity.</p>
+            <p style="margin-top:10px">Example: if <b>Cole Palmer</b> is transferred out by <b>7 insiders at Chelsea</b>, he’s likely <i>injured or benched</i>. We alert you immediately and flag that <b>Chelsea’s odds may drift</b>. Make the swap early and evaluate market positions before the news is widely priced in.</p>
           </div>
-          <div class="why-compare">
-            <h4 style="margin:0 0 8px;">Without vs With FantasyOracle</h4>
-            <ul>
-              <li><strong>Without:</strong> React to headlines; miss best entry/exit windows.</li>
-              <li><strong>With:</strong> Act on credible spikes from player/staff cohorts; front‑run market repricing.</li>
-              <li><strong>With:</strong> See the <em>why</em> behind each alert (source, window, historical accuracy).</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="markets" class="section">
-      <h2>Undervalued Markets</h2>
-      <p style="text-align:center; color:var(--muted);">Coming soon — live dashboard will display Polymarket lines flagged by FantasyOracle as potentially undervalued or overvalued based on player transfer intelligence.</p>
-    </section>
-
-    <section id="how" class="section">
-      <h2>How It Works</h2>
-      <div class="how-split">
-        <div class="copy">
-          <p>We’ve scraped the Fantasy Premier League squads for <strong>all 550 Premier League players</strong> and identified <strong>~290 fantasy teams owned by players</strong>. We also track fantasy teams from club staff across each corresponding club. We monitor their <strong>transfers</strong> and <strong>live-update subs</strong> or moves in real time. Our algorithm then <strong>cross-references those insider-like signals</strong> with <strong>Polymarket</strong> to surface <em>undervalued or overvalued</em> markets that correlate to the transfer activity.</p>
-          <p>Example: if <strong>Cole Palmer</strong> is transferred out by <strong>7 insiders at Chelsea</strong>, he’s <em>likely injured or benched</em>. We alert you immediately and flag that <strong>Chelsea’s odds may drift</strong>. You can act fast in your fantasy league and evaluate related markets before the news is widely priced in.</p>
+          <div class="media">Image placeholder — add your diagram/screenshot here</div>
         </div>
-        <div class="media">
-          <span>Image placeholder — add your diagram/screenshot here</span>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- DATA PIPELINE / TECH FLOW -->
-    <section id="pipeline" class="section">
-      <h2>Our Data Pipeline</h2>
-      <p style="text-align:center; color:var(--muted); max-width:900px; margin:0 auto 18px;">From insider-like transfer signals to market edges — built for speed, reliability, and explainability.</p>
-      <div class="diagram">
-        <!-- Simple inline SVG diagram placeholder -->
-        <svg viewBox="0 0 940 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- REVAMPED Intelligence Engine (Pipeline) -->
+      <section id="engine" class="section engine">
+        <h2 class="center">FantasyOracle Intelligence Engine</h2>
+        <p class="sub center" style="max-width:900px; margin:6px auto 24px">A fast, explainable pipeline that turns player & staff transfer activity into actionable alerts and market edges.</p>
+        <svg class="engine-arrow" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#9a5cff"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
+            <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#9a5cff" />
+              <stop offset="100%" stop-color="#22d3ee" />
             </linearGradient>
           </defs>
-          <rect x="20" y="40" width="170" height="70" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="105" y="80" text-anchor="middle" class="label">FPL Players & Staff</text>
-
-          <rect x="220" y="40" width="170" height="70" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="305" y="65" text-anchor="middle" class="label">Scraper +
-            Ingestion</text>
-          <text x="305" y="85" text-anchor="middle" class="label">(550 players / ~290 insider teams)</text>
-
-          <rect x="420" y="40" width="180" height="70" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="510" y="65" text-anchor="middle" class="label">Feature Store</text>
-          <text x="510" y="85" text-anchor="middle" class="label">(transfers, subs, cohorts)</text>
-
-          <rect x="630" y="40" width="140" height="70" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="700" y="65" text-anchor="middle" class="label">Signal
-            Scoring</text>
-
-          <rect x="800" y="40" width="120" height="70" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="860" y="70" text-anchor="middle" class="label">Alerts</text>
-
-          <!-- Market side -->
-          <rect x="420" y="140" width="160" height="60" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)"/>
-          <text x="500" y="175" text-anchor="middle" class="label">Polymarket Scanner</text>
-
-          <!-- Arrows -->
-          <path d="M190 75 L220 75" stroke="url(#g1)" stroke-width="3"/>
-          <path d="M390 75 L420 75" stroke="url(#g1)" stroke-width="3"/>
-          <path d="M600 75 L630 75" stroke="url(#g1)" stroke-width="3"/>
-          <path d="M770 75 L800 75" stroke="url(#g1)" stroke-width="3"/>
-          <path d="M510 110 L500 140" stroke="url(#g1)" stroke-width="3"/>
-          <path d="M780 110 L580 170" stroke="url(#g1)" stroke-width="3"/>
+          <g stroke="url(#arrowGrad)" stroke-width="4" fill="none" opacity="0.7">
+            <path d="M 12 100 L 280 100" />
+            <path d="M 312 100 L 580 100" />
+            <path d="M 612 100 L 880 100" />
+          </g>
         </svg>
-      </div>
-    </section>
+        <div class="engine-row">
+          <div class="engine-card frame"><div class="glass"><div class="sheen"></div><h4>FPL Intel Feed</h4><p>Players • Staff cohorts • Transfers & subs • Time windows</p></div></div>
+          <div class="engine-card frame"><div class="glass"><div class="sheen"></div><h4>Signal Engine</h4><p>Velocity, cohort weighting, decay, explainability</p></div></div>
+          <div class="engine-card frame"><div class="glass"><div class="sheen"></div><h4>Polymarket Sync</h4><p>Implied vs expected • Mispricing detector</p></div></div>
+          <div class="engine-card frame"><div class="glass"><div class="sheen"></div><h4>Live Alerts</h4><p>Email / Discord / Dashboard with rationale</p></div></div>
+        </div>
+      </section>
 
-    <!-- CASE STUDY -->
-    <section id="case-study" class="section">
-      <h2>Case Study: Insider-Like Transfers → Market Drift</h2>
-      <div class="case">
-        <div class="card">
-          <h3>Signal</h3>
-          <p>Multiple Chelsea-linked fantasy accounts transfer out <strong>Cole Palmer</strong> within a short window. Cohort weighting crosses our alert threshold.</p>
-          <div class="facts">
-            <div class="fact"><b>Trigger</b>7 insider accounts at the same club</div>
-            <div class="fact"><b>Time Window</b>30–60 minutes spike</div>
-            <div class="fact"><b>Confidence</b>High (historical accuracy on similar spikes)</div>
+      <!-- Example Signal (Case Study) -->
+      <section id="case" class="section">
+        <h2 class="center">Example Signal</h2>
+        <div class="example">
+          <div class="glass story">
+            <h3 style="margin:0 0 6px">Chelsea — Cole Palmer OUT (Insider spike)</h3>
+            <p class="sub" style="margin:0">Within 45 minutes, seven Chelsea‑linked fantasy accounts transfer out <b>Cole Palmer</b>. The cohort‑weighted velocity crosses our threshold → we flag <i>injury/bench risk</i> and scan related Polymarket markets for drift.</p>
+          </div>
+          <div class="stats">
+            <div class="frame"><div class="glass stat"><div class="big">↑ 7</div><small>Insider accounts (window)</small></div></div>
+            <div class="frame"><div class="glass stat"><div class="big">30–60m</div><small>Spike duration</small></div></div>
+            <div class="frame"><div class="glass stat"><div class="big">High</div><small>Confidence (historical)</small></div></div>
+            <div class="frame"><div class="glass stat"><div class="big">Drift</div><small>Team odds likely move</small></div></div>
           </div>
         </div>
-        <div class="card">
-          <h3>Action</h3>
-          <p>FantasyOracle pushes an alert: likely injury/benching risk. We flag related <strong>Polymarket</strong> lines as potentially overvalued.</p>
-          <div class="facts">
-            <div class="fact"><b>Fantasy</b>Swap early; avoid dead transfers</div>
-            <div class="fact"><b>Markets</b>Evaluate Chelsea‑related downside</div>
-            <div class="fact"><b>Explainability</b>Shows cohort, timestamps, and reasoning</div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ROADMAP / VISION -->
-    <section id="roadmap" class="section">
-      <h2>Roadmap</h2>
-      <div class="timeline">
-        <div class="milestone">
-          <h4>Q4 2025 — FPL Alpha</h4>
-          <small>Transfer tracking, insider cohorts, Polymarket scanner (manual curation).</small>
+      <!-- Pricing (coming soon) -->
+      <section id="pricing" class="section">
+        <h2 class="center">Pricing</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; max-width:980px; margin:0 auto">
+          <div class="frame"><div class="glass" style="padding:22px; text-align:center"><h3>Starter <span style="font-size:12px" class="sub">Coming soon</span></h3><div style="font-size:28px; font-weight:800; margin:6px 0 10px">Free</div><p class="sub">Weekly intel digest, limited signals, email alerts.</p></div></div>
+          <div class="frame"><div class="glass" style="padding:22px; text-align:center"><h3>Pro <span style="font-size:12px" class="sub">Coming soon</span></h3><div style="font-size:28px; font-weight:800; margin:6px 0 10px">£19/mo</div><p class="sub">Real-time alerts, Polymarket correlation, watchlists.</p></div></div>
+          <div class="frame"><div class="glass" style="padding:22px; text-align:center"><h3>Elite <span style="font-size:12px" class="sub">Coming soon</span></h3><div style="font-size:28px; font-weight:800; margin:6px 0 10px">£49/mo</div><p class="sub">Full feed, Discord bot, historical dashboards & API.</p></div></div>
         </div>
-        <div class="milestone">
-          <h4>Q1 2026 — NFL Integration</h4>
-          <small>Depth charts, practice participation, actives/inactives feed.</small>
-        </div>
-        <div class="milestone">
-          <h4>Q2 2026 — Accuracy & Backtesting</h4>
-          <small>Signal precision/recall dashboards, cohort scoring, model iteration.</small>
-        </div>
-        <div class="milestone">
-          <h4>Q3 2026 — API & Partner Integrations</h4>
-          <small>Programmatic access, Discord bot, polished live dashboards.</small>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id=\"stack\" class="powered-by">
-      <span class="label">Powered by</span>
-      <div class="powered-logos">
-        <img alt="FPL API" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ac763a410ca3b43bf_images%20(1).png" />
-        <img alt="Polymarket" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a667b803dda1f8984_Company_Logo_Polymarket.png" />
-        <img alt="Python" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ab00c7602d368c73d_python_logo_icon_168886.png" />
-        <img alt="FastAPI" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a1a70a9fb5ce297e3_logo-teal.png" />
-        <img alt="PostgreSQL" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ae689e40829badfd8_Postgresql_elephant.svg.png" />
-        <img alt="AWS" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a73471d968c7f1f44_Amazon_Web_Services-Logo.wine.svg" />
-      </div>
-    </section>
-
-    <section id="pricing" class="section">
-      <h2>Pricing</h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; max-width:900px; margin:0 auto;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; text-align:center;">
-          <h3>Starter <span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.06);">Coming soon</span></h3>
-          <div style="font-size:28px; font-weight:800; margin:6px 0 10px;">Free</div>
-          <p>Weekly intel digest, limited signals, email alerts.</p>
+      <!-- Powered by -->
+      <section id="stack" class="section powered-by">
+        <span class="label">Powered by</span>
+        <div class="powered-logos">
+          <img alt="FPL API" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ac763a410ca3b43bf_images%20(1).png" />
+          <img alt="Polymarket" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a667b803dda1f8984_Company_Logo_Polymarket.png" />
+          <img alt="Python" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ab00c7602d368c73d_python_logo_icon_168886.png" />
+          <img alt="FastAPI" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a1a70a9fb5ce297e3_logo-teal.png" />
+          <img alt="PostgreSQL" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516ae689e40829badfd8_Postgresql_elephant.svg.png" />
+          <img alt="AWS" src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/68f0516a73471d968c7f1f44_Amazon_Web_Services-Logo.wine.svg" />
         </div>
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; text-align:center;">
-          <h3>Pro <span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.06);">Coming soon</span></h3>
-          <div style="font-size:28px; font-weight:800; margin:6px 0 10px;">£19/mo</div>
-          <p>Real-time alerts, Polymarket correlation, watchlists.</p>
-        </div>
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; text-align:center;">
-          <h3>Elite <span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.06);">Coming soon</span></h3>
-          <div style="font-size:28px; font-weight:800; margin:6px 0 10px;">£49/mo</div>
-          <p>Full feed, Discord bot, historical dashboards & API.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="signup" class="section" style="text-align:center;">
-      <h2>Join The Waitlist</h2>
-      <p style="color:var(--muted); max-width:680px; margin:0 auto 16px;">Be first to access FantasyOracle and get weekly early-intel reports. FPL now, NFL beta next.</p>
-      <form action="#" method="POST" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-        <input type="email" name="email" placeholder="Your email" required style="padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--fg); min-width:260px;">
-        <button style="padding:12px 18px; border-radius:999px; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); border:none; color:var(--fg); font-weight:600;" type="submit">Notify Me</button>
-      </form>
-      <div style="margin-top:16px">
-        <a href="mailto:media@fantasyoracle.fun" style="color:var(--fg); margin-right:12px; text-decoration:none;">Contact</a>
-        <a href="#" style="color:var(--fg); text-decoration:none;">X/Twitter</a>
-      </div>
-    </section>
+      <!-- Signup -->
+      <section id="signup" class="section center">
+        <h2>Join The Waitlist</h2>
+        <p class="sub" style="max-width:680px; margin:0 auto 16px">Be first to access FantasyOracle and get weekly early‑intel reports. FPL now, NFL beta next.</p>
+        <form action="#" method="POST" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+          <input type="email" name="email" placeholder="Your email" required style="padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--fg); min-width:260px;">
+          <button class="cta" type="submit">Notify Me</button>
+        </form>
+        <div style="margin-top:16px">
+          <a href="mailto:media@fantasyoracle.fun" style="color:var(--fg); margin-right:12px; text-decoration:none">Contact</a>
+          <a href="#" style="color:var(--fg); text-decoration:none">X/Twitter</a>
+        </div>
+      </section>
 
-    <footer>
-      © 2025 FantasyOracle. All rights reserved. FantasyOracle is not affiliated with the Premier League, Fantasy Premier League, or Polymarket. Data is for informational purposes only.
-      <div class="footer-links">
-        <a href="mailto:media@fantasyoracle.fun">Contact</a>
-        <a href="#">X/Twitter</a>
-      </div>
-    </footer>
+      <footer>
+        © 2025 FantasyOracle. All rights reserved. FantasyOracle is not affiliated with the Premier League, Fantasy Premier League, or Polymarket. Data is for informational purposes only.
+        <div class="footer-links">
+          <a href="mailto:media@fantasyoracle.fun">Contact</a>
+          <a href="#">X/Twitter</a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
